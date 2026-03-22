@@ -28,9 +28,14 @@ data/processed/
 # =========================
 # Models
 # =========================
-models/*.pkl
-models/*.h5
-models/*.pt
+src/models/*.pkl
+src/models/*.h5
+src/models/*.pt
+
+# =========================
+# Build artifacts
+# =========================
+*.egg-info/
 
 # =========================
 # Logs / reports
