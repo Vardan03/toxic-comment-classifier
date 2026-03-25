@@ -6,6 +6,7 @@ from src.data.load_data import load_train_data
 from src.data.preprocess import preprocess_df
 from src.features.tfidf import fit_tfidf
 from src.config import MODEL_PATH, RANDOM_STATE, TEST_SIZE
+from src.utils.logger import save_results
 
 def train_model(X, df, vectorizer):
     y = df[['toxic', 'severe_toxic', 'obscene', 'threat', 'insult', 'identity_hate']].values
