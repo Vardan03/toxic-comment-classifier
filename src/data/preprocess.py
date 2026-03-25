@@ -12,13 +12,13 @@ def clean_text(text):
     text = remove_ip_addresses(text)
     return text
 
-def preprocess_df(df, text_column='comment_text'):
+def preprocess_train(df, text_column='comment_text'):
     df[text_column] = df[text_column].astype(str).apply(clean_text)
     return df
 
 def preprocess_and_save():
     train = load_train_data()
-    train_cleaned = preprocess_df(train)
+    train_cleaned = preprocess_train(train)
     train_cleaned.to_csv(PROCESSED_TRAIN_PATH, index=False)
     test_labels = load_test_labels()
     test = load_test_data()

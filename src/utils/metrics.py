@@ -23,7 +23,6 @@ def compute_metrics(y_true, y_pred, y_pred_proba):
 
     return results
 
-
 def print_metrics(results):
     print("=" * 40)
     print(f"{'Label':<20} {'ROC AUC':>10} {'F1':>10}")
