@@ -13,7 +13,7 @@ PROCESSED_TEST_LABELS_PATH  = ROOT_DIR / "data" / "processed" / "cleaned_test_la
 # Model & reports
 MODEL_PATH   = ROOT_DIR / "src" / "models" / "baseline_model.pkl"
 TFIDF_PATH = ROOT_DIR / "src" / "models" / "baseline_model_tfidf.pkl"
-REPORTS_PATH = ROOT_DIR / "src" / "reports" / "results.txt"
+REPORTS_PATH = ROOT_DIR / "reports" / "result.txt"
 
 # NLP / Features
 MAX_FEATURES = 20000
