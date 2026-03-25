@@ -1,5 +1,5 @@
 from src.data.load_data import load_train_data, load_test_data, load_test_labels, load_preprocess_train_data, load_preprocess_test_data, load_preprocess_test_labels
-from src.data.preprocess import preprocess_and_save, preprocess_df, remove_unlabeled_rows
+from src.data.preprocess import preprocess_and_save, preprocess_train, remove_unlabeled_rows
 from src.models.train import train_model
 from src.features.tfidf import fit_tfidf
 from src.models.predict import predict, predict_proba
@@ -7,12 +7,12 @@ from src.utils.metrics import compute_metrics, print_metrics
 from src.utils.logger import save_results
 
 def main():
-    df = load_preprocess_train_data()
-    # preprocess_and_save()
-    # df = preprocess_df(df)
+    train = load_train_data()
+    preprocess_and_save()
+    train = preprocess_train(train)
     
-    X, vectorizer = fit_tfidf(df['comment_text'])
-    train_model(X, df, vectorizer)
+    vectors, vectorizer = fit_tfidf(train['comment_text'])
+    train_model(vectors, train, vectorizer)
 
     test = load_preprocess_test_data()
     test_labels = load_preprocess_test_labels() 

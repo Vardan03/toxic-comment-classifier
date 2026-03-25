@@ -28,9 +28,9 @@ data/processed/
 # =========================
 # Models
 # =========================
-src/models/*.pkl
-src/models/*.h5
-src/models/*.pt
+models/*.pkl
+models/*.h5
+models/*.pt
 
 # =========================
 # Build artifacts
