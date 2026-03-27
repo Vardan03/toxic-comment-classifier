@@ -19,6 +19,7 @@ REPORTS_PATH = ROOT_DIR / "reports" / "result.txt"
 # NLP / Features
 MAX_FEATURES = 20000
 NGRAM_RANGE  = (1, 2)
+THRESHOLD = 0.3
 
 RANDOM_STATE = 42
 TEST_SIZE    = 0.2
