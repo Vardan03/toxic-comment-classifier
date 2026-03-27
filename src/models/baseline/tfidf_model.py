@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import f1_score, roc_auc_score
-
+from src.utils.metrics import compute_metrics
 from src.models.base_model import BaseModel
 from src.features.tfidf import fit_tfidf, transform_tfidf
 from src.config import MODEL_PATH, RANDOM_STATE, TEST_SIZE
@@ -15,7 +15,7 @@ LABEL_COLUMNS = ['toxic', 'severe_toxic', 'obscene', 'threat', 'insult', 'identi
 class TFIDFModel(BaseModel):
     def __init__(self):
         self.model = OneVsRestClassifier(
-            LogisticRegression(random_state=RANDOM_STATE, max_iter=1000)
+            LogisticRegression(random_state=RANDOM_STATE, max_iter=1000, class_weight="balanced")
         )
         self.vectorizer = None
 
@@ -32,7 +32,7 @@ class TFIDFModel(BaseModel):
         print(f"✅ TFIDFModel trained.")
 
         metrics = self.evaluate(X_val, y_val)
-        print(f"📊 Validation F1: {metrics['f1']:.4f} | AUC-ROC: {metrics['roc_auc']:.4f}")
+        print(f"📊 Validation F1: {metrics['macro']['f1']:.4f} | AUC-ROC: {metrics['macro']['roc_auc']:.4f}")
         return metrics
 
     def predict(self, X):
@@ -44,10 +44,7 @@ class TFIDFModel(BaseModel):
     def evaluate(self, X_test, y_test):
         y_pred = self.predict(X_test)
         y_proba = self.predict_proba(X_test)
-        return {
-            "f1": f1_score(y_test, y_pred, average='macro'),
-            "roc_auc": roc_auc_score(y_test, y_proba, average='macro')
-        }
+        return compute_metrics(y_test, y_pred, y_proba)
 
     def save(self, path: str = MODEL_PATH):
         with open(path, 'wb') as f:
