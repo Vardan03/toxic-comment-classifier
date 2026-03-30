@@ -1,6 +1,7 @@
 from src.models.baseline.tfidf_model import TFIDFModel
 from src.config import MODEL_PATH, MODELS_PATH
 from src.models.deep_learning.rnn_model import RNNModel
+from src.models.deep_learning.lstm_model import LSTMModel
 
 def train_model(df):
     model = TFIDFModel()
@@ -13,6 +14,14 @@ def train_model(df):
 def train_rnn_model(X_train, y_train):
     print("Training RNN model...")
     model = RNNModel()
+    model = model.fit(X_train, y_train)
+    model.save(MODELS_PATH)
+
+    return model
+
+def train_lstm_model(X_train, y_train):
+    print("Training LSTM model...")
+    model = LSTMModel()
     model = model.fit(X_train, y_train)
     model.save(MODELS_PATH)
 
