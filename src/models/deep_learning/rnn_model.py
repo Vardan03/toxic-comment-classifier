@@ -18,7 +18,7 @@ class WeightedFocalLoss(nn.Module):
     formula (per element)
     ---------------------
     p   = sigmoid(logit)
-    p_t = p если y=1,  (1-p) если y=0
+    p_t = p if y=1,  (1-p) if y=0
     FL  = -pos_weight * y * (1-p_t)^γ * log(p_t)
           - (1-y) * (1-p_t)^γ * log(1-p_t)
  

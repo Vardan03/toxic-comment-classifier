@@ -23,7 +23,7 @@ def main():
 
     # Train RNN model
     train_y = train[LABEL_COLS].to_numpy().astype(np.float32)
-    model_lstm = train_lstm_model(train['comment_text'], train_y)
+    # model_lstm = train_lstm_model(train['comment_text'], train_y)
 
     # Making predictions
     # y_pred = predict(test["comment_text"])
