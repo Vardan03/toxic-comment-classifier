@@ -1,7 +1,7 @@
 from src.data.load_data import load_train_data, load_test_data, load_test_labels, load_preprocess_train_data, load_preprocess_test_data, load_preprocess_test_labels
 from src.data.preprocess import preprocess_train, preprocess_test
-from train import train_model, train_rnn_model, train_lstm_model
-from predict import predict, predict_proba, predict_rnn, predict_rnn_proba, predict_lstm, predict_lstm_proba
+from train import train_model, train_rnn_model, train_lstm_model, train_gpt_model
+from predict import predict, predict_proba, predict_rnn, predict_rnn_proba, predict_lstm, predict_lstm_proba, predict_gpt, predict_gpt_proba
 from src.utils.metrics import compute_metrics, print_metrics
 from src.utils.logger import save_results
 from src.config import LABEL_COLS
@@ -23,14 +23,17 @@ def main():
 
     # Train RNN model
     train_y = train[LABEL_COLS].to_numpy().astype(np.float32)
+    train_X = train['comment_text'].tolist()
     # model_lstm = train_lstm_model(train['comment_text'], train_y)
+    model_gpt = train_gpt_model(train_X, train_y)
 
     # Making predictions
     # y_pred = predict(test["comment_text"])
     # y_pred_proba = predict_proba(test["comment_text"])
-    y_pred = predict_lstm(test["comment_text"])
+    # y_pred = predict_lstm(test["comment_text"])
+    y_pred = predict_gpt(test["comment_text"])
     print(y_pred)
-    y_pred_proba = predict_lstm_proba(test["comment_text"])
+    y_pred_proba = predict_gpt_proba(test["comment_text"])
 
     # Getting the actual labels
     y_true = test_labels.drop(columns=["id"]).values

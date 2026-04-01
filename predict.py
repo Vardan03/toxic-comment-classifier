@@ -1,9 +1,11 @@
 import pandas as pd
 import numpy as np
+import src
 from src.models.baseline.tfidf_model import TFIDFModel
 from src.config import MODEL_PATH, THRESHOLD, MODELS_PATH, LABEL_COLS
 from src.models.deep_learning.rnn_model import RNNModel
 from src.models.deep_learning.lstm_model import LSTMModel
+from src.models.pretrained.gpt_model import GPT2Model
 
 def load_model():
     model = TFIDFModel()
@@ -49,4 +51,19 @@ def predict_lstm(texts: list[str], threshold: float = THRESHOLD) -> pd.DataFrame
 
 def predict_lstm_proba(texts: list[str]):
     model = load_lstm_model()
+    return model.predict_proba(texts)
+
+
+def load_gpt_model():
+    model = GPT2Model()
+    model.load(MODELS_PATH)
+    return model
+
+def predict_gpt(texts: list[str], threshold: float = THRESHOLD):
+    model = load_gpt_model()
+    y_pred = model.predict(texts, threshold)
+    return y_pred
+
+def predict_gpt_proba(texts: list[str]):
+    model = load_gpt_model()
     return model.predict_proba(texts)
