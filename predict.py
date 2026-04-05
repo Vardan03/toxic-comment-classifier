@@ -6,6 +6,8 @@ from src.config import MODEL_PATH, THRESHOLD, MODELS_PATH, LABEL_COLS
 from src.models.deep_learning.rnn_model import RNNModel
 from src.models.deep_learning.lstm_model import LSTMModel
 from src.models.pretrained.gpt_model import GPT2Model
+from src.models.pretrained.bert_model import BERTModel
+
 
 def load_model():
     model = TFIDFModel()
@@ -57,13 +59,35 @@ def predict_lstm_proba(texts: list[str]):
 def load_gpt_model():
     model = GPT2Model()
     model.load(MODELS_PATH)
+    print("GPT model loaded successfully.")
     return model
 
 def predict_gpt(texts: list[str], threshold: float = THRESHOLD):
     model = load_gpt_model()
     y_pred = model.predict(texts, threshold)
+    print("Predictions made successfully.")
     return y_pred
 
 def predict_gpt_proba(texts: list[str]):
     model = load_gpt_model()
+    print("Predicting probabilities...")
+    return model.predict_proba(texts)
+
+
+def load_bert_model():
+    model = BERTModel()
+    model.load(MODELS_PATH)
+    print("BERT model loaded successfully.")
+    return model
+
+
+def predict_bert(texts: list[str], threshold: float = THRESHOLD):
+    model = load_bert_model()
+    y_pred = model.predict(texts, threshold)
+    print("Predictions made successfully.")
+    return y_pred
+
+def predict_bert_proba(texts: list[str]):
+    model = load_bert_model()
+    print("Predicting probabilities...")
     return model.predict_proba(texts)

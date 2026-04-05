@@ -3,6 +3,7 @@ from src.config import MODEL_PATH, MODELS_PATH
 from src.models.deep_learning.rnn_model import RNNModel
 from src.models.deep_learning.lstm_model import LSTMModel
 from src.models.pretrained.gpt_model import GPT2Model
+from src.models.pretrained.bert_model import BERTModel
 
 def train_model(df):
     model = TFIDFModel()
@@ -33,5 +34,13 @@ def train_gpt_model(X_train, y_train):
     print("Training GPT model...")
     model = GPT2Model()
     model.fit(X_train, y_train)
+    model.save(MODELS_PATH)
+    pass
+
+
+def train_bert_model(X_train, y_train, X_val, y_val):
+    print("Training BERT model...")
+    model = BERTModel()
+    model.fit(X_train, y_train, X_val, y_val)
     model.save(MODELS_PATH)
     pass

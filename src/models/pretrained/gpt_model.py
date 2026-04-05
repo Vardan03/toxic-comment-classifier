@@ -80,8 +80,8 @@ class GPT2Model(nn.Module):
         gamma:       float = 2.0,
         lr:          float = 2e-5,
         batch_size:  int   = 16,
-        epochs:      int   = 3,
-        freeze_gpt2: bool  = False,
+        epochs:      int   = 5,
+        freeze_gpt2: bool  = True,
         device:      str   = "auto",
     ):
         super().__init__()
@@ -99,7 +99,7 @@ class GPT2Model(nn.Module):
         if device == "auto":
             self._device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
             print(f"[GPT2Model] auto-selected device: {self._device}")
-        else:
+        else: 
             self._device = torch.device(device)
 
         # ── tokenizer ─────────────────────────────────────────────────────
