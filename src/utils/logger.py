@@ -3,7 +3,7 @@ from src.config import REPORTS_PATH
 
 def save_results(results, model_name="model"):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
+    REPORTS_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(REPORTS_PATH, "a") as f:
         f.write(f"\n=== {model_name} | {timestamp} ===\n")
         f.write(f"{'Label':<20} {'ROC AUC':>10} {'F1':>10} {'Recall':>10}\n")

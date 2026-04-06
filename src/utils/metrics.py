@@ -1,14 +1,14 @@
 import numpy as np
 from sklearn.metrics import roc_auc_score, f1_score, recall_score
+from src.config import LABEL_COLS
 
-LABELS = ['toxic', 'severe_toxic', 'obscene', 'threat', 'insult', 'identity_hate']
 
 def compute_metrics(y_true, y_pred, y_pred_proba):
     y_proba = np.array(y_pred_proba)
 
     results = {}
 
-    for i, label in enumerate(LABELS):
+    for i, label in enumerate(LABEL_COLS):
         auc    = roc_auc_score(y_true[:, i], y_proba[:, i])
         f1     = f1_score(y_true[:, i], y_pred[:, i])
         recall = recall_score(y_true[:, i], y_pred[:, i], zero_division=0)

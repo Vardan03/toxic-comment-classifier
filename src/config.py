@@ -12,9 +12,15 @@ PROCESSED_TEST_PATH         = ROOT_DIR / "data" / "processed" / "cleaned_test.cs
 PROCESSED_TEST_LABELS_PATH  = ROOT_DIR / "data" / "processed" / "cleaned_test_labels.csv"
 
 # Model & reports
-MODELS_PATH = ROOT_DIR / "saved_models"
-MODEL_PATH   = MODELS_PATH / "baseline_model.pkl"
-TFIDF_PATH = MODELS_PATH / "baseline_model_tfidf.pkl"
+MODELS_PATH  = ROOT_DIR / "saved_models"
+
+# per model paths
+TFIDF_PATH   = MODELS_PATH / "tfidf" / "tfidf_model.pkl"
+RNN_PATH     = MODELS_PATH / "rnn"
+LSTM_PATH    = MODELS_PATH / "lstm"
+BERT_PATH    = MODELS_PATH / "bert"
+GPT_PATH     = MODELS_PATH / "gpt"
+
 REPORTS_PATH = ROOT_DIR / "reports" / "result.txt"
 
 # NLP / Features

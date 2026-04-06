@@ -4,13 +4,13 @@
 
 <p align="center">
   <b>Production-level multi-label toxic comment detection system</b><br/>
-  Built with classical ML, deep learning and pretrained transformers
+  Built with classical ML, deep learning, transformer, and ensemble approaches
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python"/>
   <img src="https://img.shields.io/badge/NLP-Multi--Label-success?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Models-TFIDF%20%7C%20RNN%20%7C%20LSTM%20%7C%20BERT%20%7C%20GPT-purple?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Models-TFIDF%20%7C%20RNN%20%7C%20LSTM%20%7C%20BERT%20%7C%20Ensemble-purple?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Status-Advanced-brightgreen?style=for-the-badge"/>
 </p>
 
@@ -57,8 +57,9 @@ Why:
 ### Deep Learning
 Located in `src/models/deep_learning/`
 
-- RNN (Didn't work well)
+- RNN
 - LSTM
+- NN models
 
 Why:
 - Capture sequence and context
@@ -75,6 +76,17 @@ Located in `src/models/pretrained/`
 Why:
 - Context-aware embeddings
 - Strong NLP performance
+
+---
+
+### Ensemble
+Located in `src/models/ensemble_model.py`
+
+- Combines multiple models
+
+Why:
+- More robust
+- Better performance
 
 ---
 
@@ -97,8 +109,6 @@ Raw Text → Preprocessing → Features → Models → Evaluation → Saved Mode
 ```bash
 toxic-comment-classifier/
 ├── notebooks/
-├── data/
-├── reports/
 ├── saved_models/
 ├── src/
 │   ├── data/
@@ -107,9 +117,11 @@ toxic-comment-classifier/
 │   │   ├── baseline/
 │   │   ├── deep_learning/
 │   │   ├── pretrained/
+│   │   ├── ensemble_model.py
 │   │   └── base_model.py
 │   ├── utils/
 │   ├── config.py
+│   └── argparser.py
 ├── main.py
 ├── train.py
 ├── predict.py
@@ -141,7 +153,7 @@ print(prediction)
 ```
 
 ## Workflow
-EDA → Preprocessing → Feature Extraction → Models → Evaluation → Prediction
+EDA → Preprocessing → Feature Extraction → Models → Evaluation → Ensemble → Prediction
 
 ## Key Design Decisions
 Modular architecture
@@ -158,10 +170,10 @@ Deployment (API / UI)
 Explainability tools
 
 ## Contributors
-Vardan Hovhannisyan,
-Lina Baghunts,
-Davit Tshaghryan,
-Vahe Hovhannisyan
+Vardan
+Lina
+Vahe
+Davit
 
 
 <div align="center">
