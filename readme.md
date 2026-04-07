@@ -128,7 +128,7 @@ pip install -r requirements.txt
 
 ## Usage
 ```bash
-Step 1 — Data Preprocessing (done once): python predict.py
+Step 1 — Data Preprocessing (done once):
   bashpython main.py --mode preprocess
 Step 2 — Model Evaluation:
   All python models at once 
