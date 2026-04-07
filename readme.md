@@ -150,12 +150,6 @@ bashpython train.py --model lstm # or other model
 The results after evaluation are saved in reports/result.txt .
 ```
 
-## Example
-```bash
-text = "You are disgusting and horrible"
-prediction = model.predict([text])
-print(prediction)
-```
 
 ## Results
 ```
